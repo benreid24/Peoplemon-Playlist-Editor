@@ -10,7 +10,7 @@ base = None
 if sys.platform == "win32":
     base = "Win32GUI"
 
-executables = [Executable("main.py", base=base, targetName='AnimationEditor.exe')]
+executables = [Executable("main.py", base=base, targetName='PlaylistEditor.exe')]
 
 packages = ["idna"]
 options = {
@@ -24,9 +24,9 @@ options = {
 }
 
 setup(
-    name="Peoplemon Animation Editor",
+    name="Peoplemon Playlist Editor",
     options=options,
     version="1.0",
-    description='Fuck Vince',
+    description='',
     executables=executables
 )

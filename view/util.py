@@ -15,36 +15,27 @@ def yesnobox(question):
     return mbox.askyesno('WTF', question) == tk.YES
 
 
-def get_image_file():
+def get_song_file():
     return askopenfilename(
-        title='Add Image',
+        title='Add Song',
         filetypes=[
-            ('Images', '*.jpg *.png')
+            ('Songs', '*.ogg')
         ]
     )
 
 
-def get_open_anim_file(folder=''):
+def get_open_file(folder=''):
     return askopenfilename(
-        title='Open Animation',
-        filetypes=[('DevAnims', '*.danim')],
+        title='Open Playlist',
+        filetypes=[('Playlist', '*.plst')],
         initialdir=folder
     )
 
 
-def get_save_devanim_file(folder=''):
+def get_save_file(folder=''):
     return asksaveasfilename(
-        title='Save Animation',
-        defaultextension='.danim',
-        filetypes=[('DevAnims', '*.danim')],
-        initialdir=folder
-    )
-
-
-def get_export_file(folder=''):
-    return asksaveasfilename(
-        title='Export Animation',
-        defaultextension='.anim',
-        filetypes=[('Animations', '*.anim')],
+        title='Save Playlist',
+        defaultextension='.plst',
+        filetypes=[('Playlist', '*.plst')],
         initialdir=folder
     )

@@ -34,7 +34,7 @@ def open_playlist():
     if current_file is not None:
         folder = os.path.dirname(current_file)
 
-    file = view_util.get_open_anim_file(folder)
+    file = view_util.get_open_file(folder)
     if file is not None and os.path.isfile(file):
         current_file = file
         controller.reset()

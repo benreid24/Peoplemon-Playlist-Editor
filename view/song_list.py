@@ -56,9 +56,7 @@ class SongList(tk.LabelFrame):
         return int(self.song_list.curselection()[0])
 
     def set_song_list(self, sl):
-        self.song_list.delete(0, tk.END)
-        self.song_list.selection_clear(0, tk.END)
-        self.file_name.set('')
+        self.clear()
         for s in sl:
             self.song_list.insert(tk.END, s)
 
@@ -69,4 +67,7 @@ class SongList(tk.LabelFrame):
         return self.file_name.get()
 
     def clear(self):
+        self.last_selection = None
         self.song_list.delete(0, tk.END)
+        self.song_list.selection_clear(0, tk.END)
+        self.file_name.set('')

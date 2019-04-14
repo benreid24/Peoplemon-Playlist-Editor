@@ -15,21 +15,21 @@ def add():
 
     DIRTY = True
     model.add_song(APP.get_song_list().get_entry())
-    APP.get_song_list().set_song_list(model.song_list)
+    update_view()
 
 
 def delete():
     global DIRTY
     DIRTY = True
     del model.song_list[APP.get_song_list().get_selected_song()]
-    APP.get_song_list().set_song_list(model.song_list)
+    update_view()
 
 
 def update(file):
     global DIRTY
     DIRTY = True
     model.song_list[APP.get_song_list().get_selected_song()] = file
-    APP.get_song_list().set_song_list(model.song_list)
+    update_view()
 
 
 def browse():
@@ -44,6 +44,10 @@ def reset():
     model.clear()
     APP.get_song_list().clear()
     clear_dirty()
+
+
+def update_view():
+    APP.get_song_list().set_song_list(model.song_list)
 
 
 def dirty_state():

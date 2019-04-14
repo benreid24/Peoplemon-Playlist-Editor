@@ -49,6 +49,7 @@ def save():
 
     if current_file is not None:
         _save(current_file)
+        view_util.popup('Heads Up', "Don't forget to copy files to Resources/Media/Music")
 
 
 def save_as():
@@ -61,6 +62,7 @@ def save_as():
     current_file = view_util.get_save_file(folder)
     if current_file is not None:
         _save(current_file)
+        view_util.popup('Heads Up', "Don't forget to copy files to Resources/Media/Music")
 
 
 def _save(file):

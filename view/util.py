@@ -1,3 +1,5 @@
+import os
+
 import tkinter.messagebox as mbox
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 import tkinter as tk
@@ -16,12 +18,13 @@ def yesnobox(question):
 
 
 def get_song_file():
-    return askopenfilename(
+    file = askopenfilename(
         title='Add Song',
         filetypes=[
             ('Songs', '*.ogg')
         ]
     )
+    return os.path.basename(file)
 
 
 def get_open_file(folder=''):

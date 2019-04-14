@@ -4,11 +4,24 @@ from controller import songs as controller
 
 
 class SongList(tk.LabelFrame):
+    def _update_selected(self):
+        try:
+            selection = self.song_list.curselection()[0]
+            if selection != self.last_selection:
+                self.last_selection = selection
+                self.file_name.set(self.song_list.get(selection))
+        except:
+            poop = []  # haha
+        self.after(100, self._update_selected)
+
+    def _update(self):
+        controller.update(self.file_name.get())
+
     def __init__(self, master):
         tk.LabelFrame.__init__(self, master, text='Songs', height=250)
 
         self.add_button = tk.Button(self, text='Add', command=controller.add)
-        self.update_button = tk.Button(self, text='Update', command=controller.update)
+        self.update_button = tk.Button(self, text='Update', command=self._update)
         self.del_button = tk.Button(self, text='Delete', command=controller.delete, background='#ff0000')
         self.add_button.grid(row=0, column=1, padx=3)
         self.update_button.grid(row=0, column=2, padx=3)
@@ -36,19 +49,24 @@ class SongList(tk.LabelFrame):
 
         self.grid(row=1, column=0, sticky=tk.W+tk.E)
 
+        self.last_selection = -1
+        self.after(100, self._update_selected)
+
     def get_selected_song(self):
         return int(self.song_list.curselection()[0])
 
     def set_song_list(self, sl):
         self.song_list.delete(0, tk.END)
         self.song_list.selection_clear(0, tk.END)
+        self.file_name.set('')
         for s in sl:
             self.song_list.insert(tk.END, s)
 
-    def set_active(self, i):
-        self.song_list.selection_clear(0, tk.END)
-        if i in range(0, self.song_list.size()):
-            self.song_list.select_set(i)
+    def set_entry(self, file):
+        self.file_name.set(file)
+
+    def get_entry(self):
+        return self.file_name.get()
 
     def clear(self):
         self.song_list.delete(0, tk.END)

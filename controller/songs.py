@@ -1,4 +1,5 @@
 from model import songs as model
+from view import util as view_util
 
 DIRTY = False
 APP = None
@@ -11,26 +12,32 @@ def init(app):
 
 def add():
     global DIRTY
+
     DIRTY = True
-    print('add song')
+    model.add_song(APP.get_song_list().get_entry())
+    APP.get_song_list().set_song_list(model.song_list)
 
 
 def delete():
     global DIRTY
     DIRTY = True
-    print('delete song')
+    del model.song_list[APP.get_song_list().get_selected_song()]
+    APP.get_song_list().set_song_list(model.song_list)
 
 
-def update():
+def update(file):
     global DIRTY
     DIRTY = True
-    print('update song')
+    model.song_list[APP.get_song_list().get_selected_song()] = file
+    APP.get_song_list().set_song_list(model.song_list)
 
 
 def browse():
     global DIRTY
     DIRTY = True
-    print('browse')
+    file = view_util.get_song_file()
+    if file:
+        APP.get_song_list().set_entry(file)
 
 
 def reset():
